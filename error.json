@@ -1,0 +1,11 @@
+{
+    "-1":"waiting",
+    "0":"SUCCESSFUL",
+    "1":"INSERTING DATA IS FAILED",
+    "2":"INSERT FAILED",
+    "3":"NO SUCH WORD",
+    "4":"DELETE FAILED",
+    "5":"NO SUCH WORD",
+    "6":"COMMAND ERROR",
+    "7":"UNEXPECTED ERROR"
+}
