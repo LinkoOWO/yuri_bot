@@ -1,4 +1,4 @@
-import discord
+import discord, os
 from discord.ext import commands
 from discord import app_commands
 import json
@@ -32,7 +32,11 @@ async def on_ready():
         print(f" - {cog}")
 
 async def main():
+    token = os.getenv("TOKEN")
+    if token is None:
+        print("Error: Token not found in environment variables.")
+        return
     async with bot:
-        await bot.start(info["token"])
+        await bot.start(token)
 
 asyncio.run(main())
