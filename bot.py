@@ -33,7 +33,7 @@ async def on_ready():
         print(f" - {cog}")
 
 async def main():
-    token = os.getenv("TOKEN")
+    token = os.environ['token']
     if token is None:
         print("Error: Token not found in environment variables.")
         return
