@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import json
 import asyncio
+import keep_alive
 
 with open("info.json", "r", encoding="utf-8") as f:
     info = json.load(f)
@@ -37,6 +38,7 @@ async def main():
         print("Error: Token not found in environment variables.")
         return
     async with bot:
+        keep_alive.keep_alive()
         await bot.start(token)
 
 asyncio.run(main())
