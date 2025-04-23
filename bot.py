@@ -33,12 +33,18 @@ async def on_ready():
         print(f" - {cog}")
 
 async def main():
-    token = os.environ['token']
+    try:
+        token = os.environ['token']
+    except:
+        try:
+            token = info["token"]
+        except:
+            token = None
     if token is None:
         print("Error: Token not found in environment variables.")
         return
     async with bot:
-        keep_alive.keep_alive()
+        #keep_alive.keep_alive()
         await bot.start(token)
 
 asyncio.run(main())
