@@ -1,6 +1,5 @@
 import discord, os
 from discord.ext import commands
-from discord import app_commands
 import json
 import asyncio
 from quart import Quart
@@ -11,6 +10,7 @@ with open("info.json", "r", encoding="utf-8") as f:
 intents = discord.Intents.all()
 app = Quart(__name__)
 
+@app.route('/')
 async def home():
     return 'Bot is alive!'
 
@@ -43,14 +43,16 @@ async def run():
 async def main():
     try:
         token = os.environ['token']
-    except:
+    except KeyError:
         try:
             token = info["token"]
-        except:
+        except KeyError:
             token = None
+
     if token is None:
         print("Error: Token not found in environment variables.")
         return
+
     await asyncio.gather(
         bot.start(token),
         run()
