@@ -44,7 +44,7 @@ async def main():
         print("Error: Token not found in environment variables.")
         return
     async with bot:
-        #keep_alive.keep_alive()
+        keep_alive.keep_alive()
         await bot.start(token)
 
 asyncio.run(main())
