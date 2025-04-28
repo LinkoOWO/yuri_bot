@@ -6,9 +6,26 @@ import json, asyncio
 with open("error.json", "r", encoding="utf-8") as jfile:
     j = json.load(jfile)
 
+with open("info.json", "r", encoding="utf-8") as f:
+    info = json.load(f)
+
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_member_join(self, member: discord.Member):
+        channel_id = info["welcome"]
+        channel = member.guild.get_channel(channel_id)
+        if channel:
+            await channel.send(f"歡迎 {member.mention} 加入伺服器！")
+
+    @commands.Cog.listener()
+    async def on_member_remove(self, member: discord.Member):
+        channel_id = info["leave"]
+        channel = member.guild.get_channel(channel_id)
+        if channel:
+            await channel.send(f"{member.mention} 離開了伺服器。")
 
     @app_commands.command(name="ping", description="Ping the bot")
     async def ping(self, interaction: discord.Interaction):
