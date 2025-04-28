@@ -38,3 +38,5 @@ class smallgames(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(smallgames(bot))
+    bot.tree.copy_global_to(guild=discord.Object(id=1339772094782771353))
+    await bot.tree.sync(guild=discord.Object(id=1339772094782771353))
