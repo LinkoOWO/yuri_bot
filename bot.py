@@ -23,6 +23,7 @@ class MyBot(commands.Bot):
         await self.load_extension("cogs.vocab")
         await self.load_extension("cogs.manager")
         await self.load_extension("cogs.showall")
+        await self.load_extension("cogs.smallgames")
 
         await self.tree.sync()
         print("Slash 指令已同步")
