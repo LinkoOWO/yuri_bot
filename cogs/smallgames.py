@@ -21,20 +21,20 @@ class smallgames(commands.Cog):
                 guess = await self.bot.wait_for('message', check=check, timeout=30.0)
                 guess_number = int(guess.content)
 
-                if guess_number < number:
-                    await interaction.channel.send("⬆️ 太小了！再試一次！")
-                elif guess_number > number:
-                    await interaction.channel.send("⬇️ 太大了！再試一次！")
-                else:
+                if guess_number < number and i < 4:
+                    await interaction.channel.send(f"⬆️ 太小了！再試一次！ 你還有 {4 - i} 次機會！")
+                elif guess_number > number and i < 4:
+                    await interaction.channel.send(f"⬇️ 太大了！再試一次！ 你還有 {4 - i} 次機會！")
+                elif guess_number == number:
                     await interaction.channel.send(f"🎉 恭喜你！你猜對了，數字是 {number}!")
                     break
+                else:
+                    await interaction.channel.send(f"🔍 正確答案是 {number}!")
             except ValueError:
                 await interaction.channel.send("❌ 請輸入一個有效的數字！")
             except asyncio.TimeoutError:
                 await interaction.channel.send("⏰ 時間到！遊戲結束。")
                 break
-        await interaction.channel.send(f"🔍 正確答案是 {number}!")
-
 
 async def setup(bot):
     await bot.add_cog(smallgames(bot))
